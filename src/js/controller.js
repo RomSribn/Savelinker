@@ -24,14 +24,18 @@ export default  class Controller{
                 return
             }
 
-            // Object.values(localStorage).map(el => console.log(typeof JSON.parse(el).url));
 
-                // console.log(typeof Object.values(localStorage)[i]);
-                if(Object.values(localStorage).some(el => JSON.parse(el).url === result.url)){
-                    // console.log(JSON.parse(Object.values(localStorage)[i]).url);
-                    alert('Existing link');
-                    return;
+            for(let i = 0; i < Object.keys(localStorage).length; i += 1){
+                if(this._model.isValidUrl(Object.keys(localStorage)[i])){
+                    if(Object.keys(localStorage)[i] === result.url){
+                        // console.log(JSON.parse(Object.values(localStorage)[i]).url);
+                        alert('Existing link');
+                        return;
+                    }
                 }
+            }
+
+
                 this._model.pushNewItem(result);
                 this._view.init(result);
                 this._view.forSearching.input.value = '';
