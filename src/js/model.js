@@ -12,12 +12,9 @@ export default class Model {
             return this._items;
         });
     }
-   /* fetchItems() {
-        return api.getAllNotes().then(notes => {
-            this.items = notes;
-
-            return this.items;
-        });
+    isValidUrl(url){
+        const objRE = /(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i;
+        return objRE.test(url);
     }
-*/
+
 }
