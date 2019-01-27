@@ -7,7 +7,8 @@ const model = new Model();
 const view = new View();
 
 new Controller(model, view);
+
 // view.showSomething();
-model.fetchItems('some.com');
-model.fetchItems('google.com');
-view.init(model.getAllItems());
+// model.fetchItems('some.com').then(i=> view.init(i));
+// view.init(model.getAllItems());
+// api.getAllNotes('some.com').then(i => console.log(i));

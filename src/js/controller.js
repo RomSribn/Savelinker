@@ -1,6 +1,41 @@
+import * as api from '../services/api';
+
 export default  class Controller{
     constructor(model, view){
-        this.model = model;
-        this.view = view;
+        this._model = model;
+        this._view = view;
+        this._view.forSearching.submit.addEventListener('click', this.handleInputLink.bind(this));
+        this._view.cardMarkup.addEventListener('click', this._view.deleteCard);
+        document.addEventListener('DOMContentLoaded', this.showCards.bind(this));
     }
+    showCards(){
+        // console.log(this._view.deleteBtn);
+        Object.values(localStorage).map(i => {
+            const item = JSON.parse(i);
+            this._view.init(item);
+        })
+    }
+
+    handleInputLink(){
+        api.getAllNotes(this._view.forSearching.input.value).then(result => {
+            if(!this._model.isValidUrl(this._view.forSearching.input.value)){
+                alert('Invalid url');
+                this._view.forSearching.input.value = '';
+                return
+            }
+            this._model.pushNewItem(result);
+
+            for(let i = 0; i < Object.values(localStorage).length; i += 1){
+                if(JSON.parse(Object.values(localStorage)[i]).url === result.url){
+                    console.log(JSON.parse(Object.values(localStorage)[i]).url === result.url);
+                    alert('Existing link');
+                    break;
+                }
+                this._view.init(result);
+                this._view.forSearching.input.value = '';
+            }
+
+        });
+    }
+
 }

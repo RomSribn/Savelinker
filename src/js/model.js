@@ -7,9 +7,12 @@ export default class Model {
     }
     fetchItems(link) {
         return api.getAllNotes(link).then(data => {
-            this.items.push(data);
-            //console.log(this.items);
+            this.items.url.push(data);
+            // return this.items;
         });
+    }
+    pushNewItem(item){
+        localStorage.setItem(item.url, JSON.stringify(item));
     }
     isValidUrl(url){
         const objRE = /(^https?:\/\/)?[a-z0-9~_\-\.]+\.[a-z]{2,9}(\/|:|\?[!-~]*)?$/i;
