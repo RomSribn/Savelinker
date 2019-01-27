@@ -23,17 +23,19 @@ export default  class Controller{
                 this._view.forSearching.input.value = '';
                 return
             }
-            this._model.pushNewItem(result);
 
-            for(let i = 0; i < Object.values(localStorage).length; i += 1){
-                if(JSON.parse(Object.values(localStorage)[i]).url === result.url){
-                    console.log(JSON.parse(Object.values(localStorage)[i]).url === result.url);
+            // Object.values(localStorage).map(el => console.log(typeof JSON.parse(el).url));
+
+                // console.log(typeof Object.values(localStorage)[i]);
+                if(Object.values(localStorage).some(el => JSON.parse(el).url === result.url)){
+                    // console.log(JSON.parse(Object.values(localStorage)[i]).url);
                     alert('Existing link');
-                    break;
+                    return;
                 }
+                this._model.pushNewItem(result);
                 this._view.init(result);
                 this._view.forSearching.input.value = '';
-            }
+
 
         });
     }
