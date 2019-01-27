@@ -12,5 +12,5 @@ export const getAllNotes = (link) => {
             if(response.ok) return response.json();
             throw new Error('Error in fetching')
         })
-        .catch(err => log('АШИБКА',err))
+        .catch(err => console.log('АШИБКА',err))
 };
