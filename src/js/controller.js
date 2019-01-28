@@ -23,6 +23,10 @@ export default  class Controller{
                 this._view.forSearching.input.value = '';
                 return
             }
+            if(!result){
+                alert('Error to searching!');
+                return
+            }
 
 
             for(let i = 0; i < Object.keys(localStorage).length; i += 1){
