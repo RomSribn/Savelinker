@@ -24,4 +24,4 @@
       все карточки-закладки которые были во время последнего его посещения. Используйте localStorage
       
       
-      demo: https://romsribn.github.io/Savelinker/
+demo: https://romsribn.github.io/Savelinker/
